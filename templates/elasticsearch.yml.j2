@@ -35,8 +35,8 @@ cluster.name: {{ elasticsearch_cluster_name }}
 # from configuring them manually. You can tie this node to a specific name:
 #
 # node.name: "Franz Kafka"
-{% if elasticsearch_node_name is defined %}
-node.name: {{ elasticsearch_node_name }}
+{% if inventory_hostname is defined %}
+node.name: {{ inventory_hostname }}
 {% endif %}
 
 # Every node can be configured to allow or deny being eligible as the master,
@@ -163,6 +163,18 @@ index.mapper_dynamic: {{ elasticsearch_index_mapper_dynamic }}
 {% endif %}
 {% if elasticsearch_misc_query_bool_max_clause_count is defined %}
 index.query.bool.max_clause_count: {{ elasticsearch_misc_query_bool_max_clause_count }}
+{% endif %}
+
+{% if elasticsearch_expunge_deletes_allowed is defined %}
+index.merge.policy.expunge_deletes_allowed: {{ elasticsearch_expunge_deletes_allowed }}
+{% endif %}
+
+{% if elasticsearch_reclaim_deletes_weight is defined %}
+index.merge.policy.reclaim_deletes_weight: {{ elasticsearch_reclaim_deletes_weight }}
+{% endif %}
+
+{% if elasticsearch_max_merge_at_once %}
+index.merge.policy.max_merge_at_once: {{ elasticsearch_max_merge_at_once }}
 {% endif %}
 
 #################################### Paths ####################################

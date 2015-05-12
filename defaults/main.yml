@@ -1,10 +1,12 @@
 ---
 # Elasticsearch Ansible Variables
 
+elasticsearch_cluster_name: test_search_cluster
 elasticsearch_user: elasticsearch
 elasticsearch_group: elasticsearch
 elasticsearch_download_url: https://download.elasticsearch.org/elasticsearch/elasticsearch
-elasticsearch_version: 1.4.2
+elasticsearch_version: 1.5.2
+elasticsearch_timezone: 'America/Chicago'
 elasticsearch_apt_repos:
   - 'ppa:webupd8team/java'
 elasticsearch_apt_java_package: oracle-java7-installer
@@ -13,6 +15,7 @@ elasticsearch_apt_dependencies:
   - ntp
   - unzip
 elasticsearch_max_open_files: 65535
+elasticsearch_node_data: "false"
 elasticsearch_home_dir: /usr/share/elasticsearch
 elasticsearch_plugin_dir: /usr/share/elasticsearch/plugins
 elasticsearch_log_dir: /var/log/elasticsearch
@@ -22,6 +25,18 @@ elasticsearch_conf_dir: /etc/elasticsearch
 elasticsearch_service_startonboot: no
 #elasticsearch_http_cors_enabled: "false"
 elasticsearch_service_state: started
+elasticsearch_memory_bootstrap_mlockall: "true"
+elasticsearch_discovery_zen_ping_multicast_enabled: "false"
+elasticsearch_discovery_zen_ping_unicast_hosts: ["10.30.6.238"]
+elasticsearch_script_disable_dynamic: "false"
+elasticsearch_http_cors_enabled: "true"
+elasticsearch_max_locked_memory: unlimited
+elasticsearch_heap_size: 512m
+elasticsearch_node_master: "true"
+elasticsearch_expunge_deletes_allowed: 10
+elasticsearch_reclaim_deletes_weight: 3.5
+elasticsearch_max_merge_at_once: 8
+elasticsearch_plugin_marvel_agent_exporter_es_hosts: ["dulmarvel0x.fbsm.com:9200"] 
 
 # Non-Elasticsearch Defaults
 apt_cache_valid_time: 300 # seconds between "apt-get update" calls.
